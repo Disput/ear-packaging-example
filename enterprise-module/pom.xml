@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ear-packaging-example</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>enterprise-module</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>war-module</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>ejb-module</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>EarPackagingExampleEnterprise</finalName>
+
+        <defaultGoal>package</defaultGoal>
+
+        <resources>
+            <resource>
+                <directory>../src/java/META-INF</directory>
+                <targetPath>META-INF</targetPath>
+                <filtering>false</filtering>
+                <includes>
+                    <include>weblogic-application.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <modules>
+                        <ejbModule>
+                            <groupId>myMultiProjectGroupId.myMultiProjectArtifactId</groupId>
+                            <artifactId>ejbModule</artifactId>
+                            <artifactId>1.0</artifactId>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>myMultiProjectGroupId.myMultiProjectArtifactId</groupId>
+                            <artifactId>webModule1</artifactId>
+                            <artifactId>1.0</artifactId>
+                            <contextRoot>iris</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
