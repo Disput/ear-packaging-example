@@ -17,6 +17,14 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
@@ -25,7 +33,6 @@
                     <generateClient>true</generateClient>
                 </configuration>
             </plugin>
-            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>rmic-maven-plugin</artifactId>
@@ -55,7 +62,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            -->
         </plugins>
     </build>
     <dependencies>
